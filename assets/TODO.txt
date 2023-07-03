@@ -1,0 +1,2 @@
+TODO: ruta confi/config.json para que no suba al git el archivo con las credenciales
+ 
