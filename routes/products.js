@@ -10,6 +10,7 @@ router.delete('/id/:id',ProductController.delete);
 router.get('/id/:id',ProductController.getById);
 router.get('/name_product/:name_product',ProductController.getOneByName);
 router.get('/price/:price', ProductController.getByPrice);
+router.get('/price_range', ProductController.getByPriceRange);
 
 
 

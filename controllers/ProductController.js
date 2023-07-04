@@ -18,17 +18,27 @@ const ProductController = {
   },
   async put(req, res) {
     try {
-      await Product.update(req.body, {
+      const rowUpdated = await Product.update(req.body, {
         where: {
           id: req.params.id,
         },
       });
-      res.status(201).send("Product updated successfully");
+      if (rowUpdated === 0) {
+        return res.status(404).send({ error: "Product not found." });
+      }
+      const productUpdated = await Product.findByPk(req.params.id);
+      if (!productUpdated) {
+        return res.status(404).send({ error: "Product not found." });
+      }
+      res
+        .status(201)
+        .send({ msg: "Product updated successfully", productUpdated });
     } catch (error) {
       console.error(error);
       res.status(500).send("Error updating product");
     }
   },
+
   async delete(req, res) {
     try {
       await Product.destroy({
@@ -89,11 +99,11 @@ const ProductController = {
           price: req.params.price,
         },
       });
-  
+
       if (filteredProducts.length === 0) {
-        return res.status(404).send({ error: 'No products found.' });
+        return res.status(404).send({ error: "No products found." });
       }
-  
+
       res.status(200).send(filteredProducts);
     } catch (err) {
       console.error(err);
@@ -101,47 +111,26 @@ const ProductController = {
     }
   },
   // Ruta para obtener productos dentro de un rango de precios
-  // async getByPriceRange(req, res) {
-  //   try {
-  //     const filteredProducts = await Product.findAll({
-  //       whrere: {
-  //         [Op.and]: {
-  //           const minPrice : req.query.min || 0;
-  //           const maxPrice : req.query.max || Infinity;
-            
-  //       }
-  //     });
+  async getByPriceRange(req, res) {
+    try {
+      const minPrice = req.query.min || 0;
+      const maxPrice = req.query.max || Infinity;
 
-      
-  //   } catch (error) {
-      
-  //   }
-  // }
+      const filteredProducts = await Product.findAll({
+        where: {
+          price: {
+            [Op.and]: [{ [Op.gte]: minPrice }, { [Op.lte]: maxPrice }],
+          },
+        },
+      });
 
-// app.get("/products/filter/price/all", (req, res) => {
-//   const minPrice = req.query.min || 0;
-//   const maxPrice = req.query.max || Infinity;
+      res.status(200).send(filteredProducts);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(err);
+    }
+  },
 };
-
-
 
 module.exports = ProductController;
 
-//TODO: FIXME: mostrar el producto en el mensaje despues de estatus al actualizar un producto:
-
-// async put(req, res) {
-//     try {
-//         await Product.update(req.body, {
-//         where: {
-//           id: req.params.id,
-//         },
-//       });
-//       const product = await Product.findByPk(req.params.id)
-//       res
-//       .status(201)
-//       .send({ message: "Product updated successfully", product });
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).send("Error updating product");
-//     }
-//   },
