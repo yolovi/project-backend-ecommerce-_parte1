@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Order_Product extends Model {
     static associate(models) {
-      Order_Product.hasMany(models.Order,{foreignKey:("Order_Product_OrderId")})
-      Order_Product.hasMany(models.Product,{foreignKey:("Order_Product_ProductId")})
+      // Order_Product.hasMany(models.Order,{foreignKey:("Order_Product_OrderId")})
+      // Order_Product.hasMany(models.Product,{foreignKey:("Order_Product_ProductId")})
     }
   }
   Order_Product.init({

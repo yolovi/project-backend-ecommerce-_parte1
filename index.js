@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
-//MIDDLEWARE
+//MIDDLEWARE (funcion que ejecutas antes de las rutas)
 app.use(express.json());
 
 //ROUTES /prefix
