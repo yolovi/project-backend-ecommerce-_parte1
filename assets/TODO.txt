@@ -1,9 +1,12 @@
-TODO: ruta confi/config.json para que no suba al git el archivo con las credenciales
+TODO: ruta confi/config.json para que no suba al git el archivo con las credenciales.
+una vez subido no se puede modificar ya que habria que borrar los commits anteriores, y volver a subir con el gitignore actualizado
 TODO: conectar las tablas de muchos a muchos cuando tenga bien las relaciones en algunos models estan comentados para poder hacer los endpoints
 
-//TODO: FIXME: En controllers > ProductController > mostrar el producto en el mensaje despues de estatus al actualizar un producto
 
-
+TODO:
+Reademe anotar:
+    -hecho como extra RANGO DE precios
+    -ORDEN ASC de precios
 
 
 Introducción
@@ -44,7 +47,7 @@ CRUD productos
 //OK / Endpoint que traiga un producto por su id
 //OK / Filtro para buscar producto por nombre
 //OK /Filtro para buscar todos los productos por precio (se pide por precio exacto, pero se valora por rango)
-Filtro que ordene los productos de mayor a menor precio
+//OK / Filtro que ordene los productos de mayor a menor precio
 Implementa validación a la hora de crear un producto para que se rellene todos los campos y si no se hace que devuelva un mensaje
 Solo podrás crear, actualizar y eliminar productos si estás autenticado.
 

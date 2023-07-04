@@ -91,7 +91,6 @@ const ProductController = {
       res.status(500).send(err);
     }
   },
-  // Filtrar los productos por precio (valores fijos)
   async getByPrice(req, res) {
     try {
       const filteredProducts = await Product.findAll({
@@ -110,7 +109,6 @@ const ProductController = {
       res.status(500).send(err);
     }
   },
-  // Ruta para obtener productos dentro de un rango de precios
   async getByPriceRange(req, res) {
     try {
       const minPrice = req.query.min || 0;
@@ -130,7 +128,29 @@ const ProductController = {
       res.status(500).send(err);
     }
   },
+  //precios de mayor a menor
+  async orderDescByPrice(req, res) { // no hay que utilizar el req si no se le pide poner info pero se tiene que poner igualmente porque sino el res ocuparia el lugar de req
+    try {
+      const filteredProducts = await Product.findAll({
+        order: [["price", "DESC"]],
+      });
+      res.status(200).send(filteredProducts);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(err);
+    }
+  },
+  async orderAscByPrice(req, res) {
+    try {
+      const filteredProducts = await Product.findAll({
+        order: [["price", "ASC"]],
+      });
+      res.status(200).send(filteredProducts);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(err);
+    }
+  },
 };
 
 module.exports = ProductController;
-

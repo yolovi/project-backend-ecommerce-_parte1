@@ -11,6 +11,8 @@ router.get('/id/:id',ProductController.getById);
 router.get('/name_product/:name_product',ProductController.getOneByName);
 router.get('/price/:price', ProductController.getByPrice);
 router.get('/price_range', ProductController.getByPriceRange);
+router.get('/price_desc',ProductController.orderDescByPrice);
+router.get('/price_asc',ProductController.orderAscByPrice)
 
 
 
