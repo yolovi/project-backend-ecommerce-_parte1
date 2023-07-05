@@ -1,8 +1,7 @@
 //IMPORT
 const { User }  = require('../models/index.js');
 
-
-console.log(User)
+//FIXME: convertir en async await
 //CONTROLADORES
 const UserController = {
     create(req, res) {

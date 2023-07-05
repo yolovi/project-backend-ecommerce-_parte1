@@ -46,16 +46,16 @@ CRUD productos
 //TODO: El endpoint de traer productos debe mostrarse junto a la categoría o categorías que pertenece
 //OK / Endpoint que traiga un producto por su id
 //OK / Filtro para buscar producto por nombre
-//OK /Filtro para buscar todos los productos por precio (se pide por precio exacto, pero se valora por rango)
+//OK / Filtro para buscar todos los productos por precio (se pide por precio exacto, pero se valora por rango)
 //OK / Filtro que ordene los productos de mayor a menor precio
-Implementa validación a la hora de crear un producto para que se rellene todos los campos y si no se hace que devuelva un mensaje
-Solo podrás crear, actualizar y eliminar productos si estás autenticado.
+//TODO: Implementa validación a la hora de crear un producto para que se rellene todos los campos y si no se hace que devuelva un mensaje
+//TODO: Solo podrás crear, actualizar y eliminar productos si estás autenticado.
 
   Categorías
 CRUD Categorías
-Endpoint para crear una categoría
-Endpoint para actualizar una categoría
-Endpoint para eliminar una categoría
+//OK / Endpoint para crear una categoría
+//OK / Endpoint para actualizar una categoría
+//OK / Endpoint para eliminar una categoría
 El endpoint para ver todas las categorías junto a los productos que tienen
 Crea un endpoint que devuelva una categoría por id
 Filtro para buscar categoría por nombre

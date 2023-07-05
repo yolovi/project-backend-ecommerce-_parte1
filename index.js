@@ -8,6 +8,7 @@ app.use(express.json());
 //ROUTES /prefix
 app.use("/users", require("./routes/users"));
 app.use("/products", require("./routes/products"));
+app.use("/categories", require("./routes/categories"));
 
 //LISTEN 
 app.listen(PORT,() => {

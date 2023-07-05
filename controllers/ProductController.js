@@ -1,11 +1,10 @@
 //IMPORT
-//const { Product, Sequelize } = require("../models/index.js");
 const { Product, Category, Sequelize } = require("../models/index.js");
 const { Op } = Sequelize;
 
 //CONTROLADORES
 const ProductController = {
-  async post(req, res) {
+  async insert(req, res) {
     try {
       const product = await Product.create(req.body);
       res
@@ -16,7 +15,7 @@ const ProductController = {
       res.status(500).send("Error creating product");
     }
   },
-  async put(req, res) {
+  async update(req, res) {
     try {
       const rowUpdated = await Product.update(req.body, {
         where: {

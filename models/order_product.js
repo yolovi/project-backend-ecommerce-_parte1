@@ -5,8 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Order_Product extends Model {
     static associate(models) {
-      // Order_Product.hasMany(models.Order,{foreignKey:("Order_Product_OrderId")})
-      // Order_Product.hasMany(models.Product,{foreignKey:("Order_Product_ProductId")})
+      // aqui no va la relacion de hasMany/belongsToMany
+      //las relaciones van en los modelos (order y product)
     }
   }
   Order_Product.init({

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate(models) {
       Order.belongsTo(models.User,{foreignKey:"UserId"})
-      Order.belongsTo(models.Order_Product,{foreignKey:("Order_Product_OrderId")})
+      //FIXME: arreglar la relacion // Order.belongsTo(models.Order_Product,{foreignKey:("Order_Product_OrderId")})
     }
   }
   Order.init({
