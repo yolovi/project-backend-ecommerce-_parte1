@@ -4,7 +4,8 @@
     "password": "mySql.1234",
     "database": "e_commerce_lights",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "jwt_secret": "secretito" 
   },
   "test": {
     "username": "root",
