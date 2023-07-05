@@ -1,5 +1,6 @@
 TODO: ruta confi/config.json para que no suba al git el archivo con las credenciales.
 una vez subido no se puede modificar ya que habria que borrar los commits anteriores, y volver a subir con el gitignore actualizado
+TODO: comprobar las relaciones en los modelos y en los endpoints y en postman.
 TODO: conectar las tablas de muchos a muchos cuando tenga bien las relaciones en algunos models estan comentados para poder hacer los endpoints
 
 

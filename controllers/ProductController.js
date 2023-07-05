@@ -6,8 +6,9 @@ const { Op } = Sequelize;
 const ProductController = {
   async insert(req, res) {
     try {
-      const product = await Product.create(req.body);
-      res
+      console.log(req.user.id)
+      const product = await Product.create({...req.body, UserId: req.user.id}); //desestructuramos para incluir el user.id (para que autom coja el user logeado) 
+      res //FIXME: req.userId. despues de hacer las relaciones comprobar si sale el userId automat. al crear el producto en postman
         .status(201)
         .send({ message: "Product created successfully", product });
     } catch (error) {

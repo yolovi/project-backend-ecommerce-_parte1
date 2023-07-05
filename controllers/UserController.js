@@ -1,5 +1,6 @@
 //IMPORT
-const { User, Token }  = require('../models/index.js');
+const { User, Token, Sequelize }  = require('../models/index.js');
+const { Op } = Sequelize;
 const bcrypt = require ('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development']
@@ -18,7 +19,6 @@ const UserController = {
       res.status(500).send({message: "Error creating user", error});
     }
   }, 
-
      async login(req, res) {
       try {
         const user = await User.findOne({
@@ -45,7 +45,6 @@ const UserController = {
         res.status(500).send(error);
       }
     },
-
     async getAll(req, res) {
       try {
         const users = await User.findAll();
@@ -55,6 +54,23 @@ const UserController = {
         res.status(500).send("Error finding category");
       }
     },
+    async logout(req, res) {
+      try {
+          await Token.destroy({
+              where: {
+                  [Op.and]: [
+                      { UserId: req.user.id },
+                      { token: req.headers.authorization }
+                  ]
+              }
+          });
+          res.send({ message: 'You have been successfully logged out' })
+      } catch (error) {
+          console.log(error)
+          res.status(500).send({ message: 'Error trying to being logged out' })
+      }
+  }
+
   
   };
 
