@@ -1,5 +1,5 @@
 //IMPORT
-const { Category, Sequelize } = require("../models/index.js");
+const { Category, Sequelize, Product } = require("../models/index.js");
 const { Op } = Sequelize;
 
 //CONTROLADORES
@@ -76,16 +76,21 @@ const CategoryController = {
     }
   },
   async getAll(req, res) {
-    try {
-      const category = await Category.findAll();
-      res.status(200).send(category);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Error finding category");
-    }
-  },
+  try {
+    const categories = await Category.findAll({
+      include: [{ model: Product, attributes: ["id", "name_product"], foreignKey:"CategoryId" }],
+    }); //{ model: Genre, attributes: ["name"], through: { attributes: [] } }
+    res.status(200).send(categories);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error loading categories" });
+  }
+},
+
 
 };
+
+
 
 //EXPORT
 module.exports = CategoryController;

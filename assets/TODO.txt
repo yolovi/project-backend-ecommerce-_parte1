@@ -2,7 +2,7 @@ TODO: ruta confi/config.json para que no suba al git el archivo con las credenci
 una vez subido no se puede modificar ya que habria que borrar los commits anteriores, y volver a subir con el gitignore actualizado
 TODO: comprobar las relaciones en los modelos y en los endpoints y en postman.
 TODO: conectar las tablas de muchos a muchos cuando tenga bien las relaciones en algunos models estan comentados para poder hacer los endpoints
-
+TODO: comprobar que estan guardados todos los endpoints en Postman
 
 TODO:
 Reademe anotar:
@@ -43,14 +43,14 @@ analizar la evolución del proyecto.
 Será requisito indispensable que el repositorio disponga de un Readme
 completo.
 
-//FIXME: DUDA. hay que poner el error en el send o solo mensaje?
+//FIXME: DUDA. hay que poner el error en el send o solo mensaje? (el error del catch)
 1.1.ENPOINTS
   Productos
 CRUD productos
 //OK / Endpoint para crear un producto
 //OK / Endpoint para actualizar un producto
 //OK / Endpoint para eliminar un producto
-//TODO: El endpoint de traer productos debe mostrarse junto a la categoría o categorías que pertenece
+//OK / El endpoint de traer productos debe mostrarse junto a la categoría o categorías que pertenece
 //OK / Endpoint que traiga un producto por su id
 //OK / Filtro para buscar producto por nombre
 //OK / Filtro para buscar todos los productos por precio (se pide por precio exacto, pero se valora por rango)
@@ -63,7 +63,7 @@ CRUD Categorías
 //OK / Endpoint para crear una categoría
 //OK / Endpoint para actualizar una categoría
 //OK / Endpoint para eliminar una categoría
-//TODO: El endpoint para ver todas las categorías junto a los productos que tienen
+//OK / El endpoint para ver todas las categorías junto a los productos que tienen
 //OK / Crea un endpoint que devuelva una categoría por id
 //OK / Filtro para buscar categoría por nombre
 
@@ -79,7 +79,7 @@ CRUD Categorías
 //OK / Endpoint para el logout
 Implementa validación a la hora de crear un usuario para que se rellene todos los campos y si no se hace que devuelva un mensaje
 
- Seeders
+TODO: Seeders
 Crea 5 productos con un seeder //hay trampa. Con las password, aqui son strings y estamos utilizano bcrypt
 
 

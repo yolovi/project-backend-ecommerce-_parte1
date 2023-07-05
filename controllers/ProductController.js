@@ -59,12 +59,9 @@ const ProductController = {
   async getAll(req, res) {
     try {
       const products = await Product.findAll({
-        //include: [Category] //esto es el inner join pero no se puede hacer hasta tener las relaciones y FK
+       //el include equivale al inner join pero no se puede hacer hasta tener las relaciones y FK
         include: [{ model: Category, attributes: ["id", "name_category"] }],
       });
-      // include: [
-      //   { model: Genre, attributes: ["name"], through: { attributes: [] } },
-      // ],
       res.status(200).send(products);
     } catch (error) {
       console.log(err);

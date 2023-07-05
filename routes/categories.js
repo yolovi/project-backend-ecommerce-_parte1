@@ -10,7 +10,7 @@ router.put("/id/:id", CategoryController.update);
 router.delete("/id/:id", CategoryController.delete);
 router.get("/id/:id", CategoryController.getByID);
 router.get("/name/:name", CategoryController.getOneByName);
-router.get("/all", CategoryController.getAll)
+router.get("/getAll", CategoryController.getAll)
 
 
 
