@@ -6,10 +6,12 @@ TODO: conectar las tablas de muchos a muchos cuando tenga bien las relaciones en
 TODO:
 Reademe anotar:
     -PRODUCT endpoint:
-    -hecho como extra RANGO DE precios
-    -ORDEN ASC de precios
+      -hecho como extra RANGO DE precios
+      -ORDEN ASC de precios
     -CATEGORY endpoint:
-    -mostrar todas las categorias
+      -mostrar todas las categorias
+    -USER endpoint:
+      -mostrar todos los usuarios
 
 
 Introducción
@@ -40,6 +42,7 @@ analizar la evolución del proyecto.
 Será requisito indispensable que el repositorio disponga de un Readme
 completo.
 
+//FIXME: DUDA. hay que poner el error en el send o solo mensaje?
 1.1.ENPOINTS
   Productos
 CRUD productos
@@ -52,7 +55,7 @@ CRUD productos
 //OK / Filtro para buscar todos los productos por precio (se pide por precio exacto, pero se valora por rango)
 //OK / Filtro que ordene los productos de mayor a menor precio
 //TODO: Implementa validación a la hora de crear un producto para que se rellene todos los campos y si no se hace que devuelva un mensaje
-//TODO: Solo podrás crear, actualizar y eliminar productos si estás autenticado.
+//OK / Solo podrás crear, actualizar y eliminar productos si estás autenticado.
 
   Categorías
 CRUD Categorías
@@ -67,11 +70,12 @@ CRUD Categorías
 //TODO: Crea un endpoint para crear pedidos
 //TODO: Crea un endpoint para ver los pedidos junto a los productos que tienen //primero relaciones
 
+
  Usuarios
 //OK / Endpoint para registrar un usuario utilizando bcrypt
 //OK / Endpoint para login(utilizando bcrypt +JWT)  
-Endpoint que nos traiga la información del usuario conectado junto a los pedidos que tiene y los productos que contiene cada pedido
-Endpoint para el logout
+//TODO: Endpoint que nos traiga la información del usuario conectado junto a los pedidos que tiene y los productos que contiene cada pedido
+//TODO: Endpoint para el logout
 Implementa validación a la hora de crear un usuario para que se rellene todos los campos y si no se hace que devuelva un mensaje
 
  Seeders

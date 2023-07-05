@@ -2,11 +2,13 @@
 const express = require('express');
 const ProductController = require('../controllers/ProductController');
 const router = express.Router();
+const {authentication, isAdmin} = require('../middleware/authentication')
+
 
 //ROUTES
-router.post('/',ProductController.insert); //post se refiere al metodo en postman // insert al nombre del metodo del modelo product
-router.put('/id/:id',ProductController.update);
-router.delete('/id/:id',ProductController.delete);
+router.post('/', authentication, ProductController.insert); //post se refiere al metodo en postman // insert al nombre del metodo del modelo product
+router.put('/id/:id', authentication, ProductController.update);
+router.delete('/id/:id', authentication, isAdmin, ProductController.delete);
 router.get('/id/:id',ProductController.getById);
 router.get('/name_product/:name_product',ProductController.getOneByName);
 router.get('/price/:price', ProductController.getByPrice);
