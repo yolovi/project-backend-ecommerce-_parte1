@@ -76,7 +76,7 @@ CRUD Categorías
 //OK / Endpoint para registrar un usuario utilizando bcrypt
 //OK / Endpoint para login(utilizando bcrypt +JWT)  
 //TODO: Endpoint que nos traiga la información del usuario conectado junto a los pedidos que tiene y los productos que contiene cada pedido
-//TODO: Endpoint para el logout
+//OK / Endpoint para el logout
 Implementa validación a la hora de crear un usuario para que se rellene todos los campos y si no se hace que devuelva un mensaje
 
  Seeders

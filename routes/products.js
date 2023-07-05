@@ -11,6 +11,7 @@ router.put('/id/:id', authentication, ProductController.update);
 router.delete('/id/:id', authentication, isAdmin, ProductController.delete);
 router.get('/id/:id',ProductController.getById);
 router.get('/name_product/:name_product',ProductController.getOneByName);
+router.get('/getAll', ProductController.getAll);
 router.get('/price/:price', ProductController.getByPrice);
 router.get('/price_range', ProductController.getByPriceRange);
 router.get('/price_desc',ProductController.orderDescByPrice);

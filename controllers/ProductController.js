@@ -6,8 +6,11 @@ const { Op } = Sequelize;
 const ProductController = {
   async insert(req, res) {
     try {
-      console.log(req.user.id)
-      const product = await Product.create({...req.body, UserId: req.user.id}); //desestructuramos para incluir el user.id (para que autom coja el user logeado) 
+      console.log(req.user.id);
+      const product = await Product.create({
+        ...req.body,
+        UserId: req.user.id,
+      }); //desestructuramos para incluir el user.id (para que autom coja el user logeado)
       res //FIXME: req.userId. despues de hacer las relaciones comprobar si sale el userId automat. al crear el producto en postman
         .status(201)
         .send({ message: "Product created successfully", product });
@@ -38,7 +41,6 @@ const ProductController = {
       res.status(500).send("Error updating product");
     }
   },
-
   async delete(req, res) {
     try {
       await Product.destroy({
@@ -52,19 +54,25 @@ const ProductController = {
       res.status(500).send("Error deleting product");
     }
   },
-  //TODO: Filtro para buscar producto por nombre y categorias.
-  //TODo: pasar getAll a async await. Traerlo con sus cateogorias solo se puede cuando esten las rel y FK
-  //   getAll(req, res) {
-  //     Product.findAll({
-  //             // include: [Category] //esto es el inner join pero no se puede hacer hasta tener las relaciones y FK
-  //         })
-  //         .then(products => res.send(products))
-  //         .catch(err => {
-  //             console.log(err)
-  //             res.status(500).send({ message: 'Error loading products' })
-  //         })
-  // },
-  //Endpoint que traiga un producto por su id
+  //Filtro para buscar producto por nombre y categorias.
+  //TODO: pasar getAll a async await. Traerlo con sus cateogorias solo se puede cuando esten las rel y FK
+  async getAll(req, res) {
+    try {
+      const products = await Product.findAll({
+        //include: [Category] //esto es el inner join pero no se puede hacer hasta tener las relaciones y FK
+        include: [{ model: Category, attributes: ["id", "name_category"] }],
+      });
+      // include: [
+      //   { model: Genre, attributes: ["name"], through: { attributes: [] } },
+      // ],
+      res.status(200).send(products);
+    } catch (error) {
+      console.log(err);
+      res.status(500).send({ message: "Error loading products" });
+    }
+  },
+
+  //TODO:Endpoint que traiga un producto por su id
   //NOTA: cuando sale este error "sqlMessage": "Unknown column 'Order_Product_ProductId' in 'field list'" es porque se ha puesto las relaciones de muchos a muchos sin conectar la FK.
 
   async getById(req, res) {
@@ -129,7 +137,8 @@ const ProductController = {
     }
   },
   //precios de mayor a menor
-  async orderDescByPrice(req, res) { // no hay que utilizar el req si no se le pide poner info pero se tiene que poner igualmente porque sino el res ocuparia el lugar de req
+  async orderDescByPrice(req, res) {
+    // no hay que utilizar el req si no se le pide poner info pero se tiene que poner igualmente porque sino el res ocuparia el lugar de req
     try {
       const filteredProducts = await Product.findAll({
         order: [["price", "DESC"]],
