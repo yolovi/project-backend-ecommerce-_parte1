@@ -5,8 +5,11 @@ TODO: conectar las tablas de muchos a muchos cuando tenga bien las relaciones en
 
 TODO:
 Reademe anotar:
+    -PRODUCT endpoint:
     -hecho como extra RANGO DE precios
     -ORDEN ASC de precios
+    -CATEGORY endpoint:
+    -mostrar todas las categorias
 
 
 Introducción
@@ -56,13 +59,13 @@ CRUD Categorías
 //OK / Endpoint para crear una categoría
 //OK / Endpoint para actualizar una categoría
 //OK / Endpoint para eliminar una categoría
-El endpoint para ver todas las categorías junto a los productos que tienen
-Crea un endpoint que devuelva una categoría por id
-Filtro para buscar categoría por nombre
+//TODO: El endpoint para ver todas las categorías junto a los productos que tienen
+//OK / Crea un endpoint que devuelva una categoría por id
+//OK / Filtro para buscar categoría por nombre
 
   Pedidos
-Crea un endpoint para ver los pedidos junto a los productos que tienen 
-Crea un endpoint para crear pedidos
+//TODO: Crea un endpoint para crear pedidos
+//TODO: Crea un endpoint para ver los pedidos junto a los productos que tienen //primero relaciones
 
  Usuarios
 Endpoint para registrar un usuario utilizando bcrypt
