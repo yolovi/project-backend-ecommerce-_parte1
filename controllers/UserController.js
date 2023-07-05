@@ -39,15 +39,27 @@ const UserController = {
         }
         const token = jwt.sign({id: user.id}, jwt_secret);
         await Token.create({ token, UserId: user.id });
-        res.send({message: "Welcome " + user.name, user, token}); //FIXME: no devuelve el nombre de usuario
+        res.send({message: "Welcome " + user.name_user, user, token}); 
       } catch (error) {
         console.error(error);
         res.status(500).send(error);
       }
     },
 
+    async getAll(req, res) {
+      try {
+        const users = await User.findAll();
+        res.status(200).send(users);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Error finding category");
+      }
+    },
+  
+  };
 
-}
+
+
 
 
 
