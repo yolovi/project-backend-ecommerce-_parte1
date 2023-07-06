@@ -1,16 +1,18 @@
+//IMPORT
+const bcrypt = require ('bcryptjs');
+
 "use strict";
 
 // Para encriptar en los seedes tenéis que importados bcrypt en el archivo y donde ponéis la contraseña poned bcrypt.hash("contraseña123",10)
 
-//FIXME: password bcrypt (en los users se hacen al crearlos endpoint)
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert("Users", [
+    return queryInterface.bulkInsert("Users", [ //"Users" modelo importante el naming
       {
         name_user: "John",
         last_name: "Doe",
         email: "example@example.com",
-        password: "123456",
+        password: await bcrypt.hash("123456",10),
         role: "user",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -18,8 +20,8 @@ module.exports = {
       {
         name_user: "Alice",
         last_name: "Smith",
-        email: "alice@example.com",
-        password: "qwerty",
+        email: "alice@example.com", 
+        password: await bcrypt.hash("qwerty",10),
         role: "user",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -28,7 +30,7 @@ module.exports = {
         name_user: "Bob",
         last_name: "Johnson",
         email: "bob@example.com",
-        password: "abc123",
+        password: await bcrypt.hash("abc123",10),
         role: "user",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -37,7 +39,7 @@ module.exports = {
         name_user: "Emma",
         last_name: "Wilson",
         email: "emma@example.com",
-        password: "password123",
+        password: await bcrypt.hash("password123",10),
         role: "user",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -46,7 +48,7 @@ module.exports = {
         name_user: "David",
         last_name: "Brown",
         email: "david@example.com",
-        password: "securepassword",
+        password: await bcrypt.hash("securepassword",10),
         role: "user",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -55,7 +57,7 @@ module.exports = {
         name_user: "Sophia",
         last_name: "Lee",
         email: "sophia@example.com",
-        password: "letmein",
+        password: await bcrypt.hash("letmein",10),
         role: "user",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -64,7 +66,7 @@ module.exports = {
         name_user: "Oliver",
         last_name: "Clark",
         email: "oliver@example.com",
-        password: "p@ssw0rd",
+        password: await bcrypt.hash("ssw0rd",10),
         role: "user",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -73,12 +75,11 @@ module.exports = {
         name_user: "Mia",
         last_name: "Taylor",
         email: "mia@example.com",
-        password: "mysecret",
+        password: await bcrypt.hash("mysecret",10),
         role: "user",
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
-      
+      }    
       
     ]);
   },
