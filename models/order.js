@@ -5,12 +5,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate(models) {
-      Order.belongsTo(models.User,{foreignKey:"UserId"})
-      //FIXME: arreglar la relacion // Order.belongsTo(models.Order_Product,{foreignKey:("Order_Product_OrderId")})
+      Order.belongsTo(models.User,{foreignKey:"UserId"});
+      Order. belongsToMany(models.Product,{through:models.Order_Product})
     }
   }
   Order.init({
-    total_price: DataTypes.FLOAT,
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
@@ -18,3 +17,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Order;
 };
+
+

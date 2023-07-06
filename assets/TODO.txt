@@ -68,7 +68,7 @@ CRUD Categorías
 //OK / Filtro para buscar categoría por nombre
 
   Pedidos
-//TODO: Crea un endpoint para crear pedidos
+//TODO: Crea un endpoint para crear pedidos // necesita estar logeado (authentication)
 //TODO: Crea un endpoint para ver los pedidos junto a los productos que tienen //primero relaciones
 
 

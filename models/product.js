@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
       Product.belongsTo(models.Category,{foreignKey:"CategoryId"});
+      Product.belongsToMany(models.Order, {through:models.Order_Product})
       //FIXME: arreglar la relacion // Product.belongsTo(models.Order_Product,{foreignKey:("Order_Product_ProductId")})
 
     }
@@ -20,3 +21,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Product;
 };
+
+  
