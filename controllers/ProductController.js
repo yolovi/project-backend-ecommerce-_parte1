@@ -55,7 +55,6 @@ const ProductController = {
     }
   },
   //Filtro para buscar producto por nombre y categorias.
-  //TODO: pasar getAll a async await. Traerlo con sus cateogorias solo se puede cuando esten las rel y FK
   async getAll(req, res) {
     try {
       const products = await Product.findAll({
@@ -64,13 +63,13 @@ const ProductController = {
       });
       res.status(200).send(products);
     } catch (error) {
-      console.log(err);
+      console.log(error);
       res.status(500).send({ message: "Error loading products" });
     }
   },
 
-  //TODO:Endpoint que traiga un producto por su id
-  //NOTA: cuando sale este error "sqlMessage": "Unknown column 'Order_Product_ProductId' in 'field list'" es porque se ha puesto las relaciones de muchos a muchos sin conectar la FK.
+  //FIXME:Endpoint que traiga un producto por su id. Si pongo un id de producto que no existe sale un numero y no el error
+  //NOTA: cuando sale este error "sqlMessage": "Unknown column 'Order_Product_ProductId' in 'field list'" es porque se ha puesto las relaciones de muchos a muchos sin conectar la FK. o en la tabla intermedia. 
 
   async getById(req, res) {
     try {

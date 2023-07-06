@@ -1,11 +1,13 @@
 //IMPORT
 const express = require("express"); // para levantar el servidor
 const OrderController = require("../controllers/OrderController");
+const {authentication, isAdmin} = require('../middleware/authentication')
 
 const router = express.Router();
 
 //ROUTES
-router.post("/", OrderController.insert);
+router.post("/", authentication, OrderController.insert);
+router.get("/all", OrderController.getAll);
 
 //EXPORTS
 module.exports = router;

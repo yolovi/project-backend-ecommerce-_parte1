@@ -7,8 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Product.belongsTo(models.Category,{foreignKey:"CategoryId"});
       Product.belongsToMany(models.Order, {through:models.Order_Product})
-      //FIXME: arreglar la relacion // Product.belongsTo(models.Order_Product,{foreignKey:("Order_Product_ProductId")})
-
     }
   }
   Product.init({
