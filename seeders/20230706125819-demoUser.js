@@ -1,5 +1,8 @@
 "use strict";
 
+// Para encriptar en los seedes tenéis que importados bcrypt en el archivo y donde ponéis la contraseña poned bcrypt.hash("contraseña123",10)
+
+//FIXME: password bcrypt (en los users se hacen al crearlos endpoint)
 module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert("Users", [
