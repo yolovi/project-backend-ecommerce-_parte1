@@ -55,19 +55,18 @@ const UserController = {
       }
     },
 //TODO: Endpoint que nos traiga la información del usuario CONECTADO junto a los pedidos que tiene y los productos que contiene cada pedido
+
+
 async getOrdersUser(req, res) {
   try {
 
-    const user = await User.findByPk(req.user.id)
-    ({     
-    //el include equivale al inner join pero no se puede hacer hasta tener las relaciones y FK
-    include: { model: Order }});
-
-  //  include: [
-  //       { model: Order },
-  //       { model: Product, attributes: ["id", "name_product", "price"] }
-  //     ]
-  //   });
+    const user = await User.findByPk(req.user.id, {
+     include: { 
+      model: Order,
+      include: Product,
+     }
+    })
+      
 
     res.status(200).send(user);
   } catch (error) {
