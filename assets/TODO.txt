@@ -43,7 +43,7 @@ analizar la evolución del proyecto.
 Será requisito indispensable que el repositorio disponga de un Readme
 completo.
 
-//FIXME: DUDA. hay que poner el error en el send o solo mensaje? (el error del catch)
+//FIXME: hay que poner el error en el send o solo mensaje (el error del catch)
 1.1.ENPOINTS
   Productos
 CRUD productos
@@ -68,18 +68,18 @@ CRUD Categorías
 //OK / Filtro para buscar categoría por nombre
 
   Pedidos
-//OK / Crea un endpoint para crear pedidos // necesita estar logeado (authentication)
-//TODO: Crea un endpoint para ver los pedidos junto a los productos que tienen //primero relaciones
+//FIXME: (no recoge el usuario loggeado) Crea un endpoint para crear pedidos // necesita estar logeado (authentication)
+//FIXME: (ver nota en OrderController) Crea un endpoint para ver los pedidos junto a los productos que tienen //primero relaciones
 
 
  Usuarios
 //OK / Endpoint para registrar un usuario utilizando bcrypt
 //OK / Endpoint para login(utilizando bcrypt +JWT)  
-//TODO: Endpoint que nos traiga la información del usuario conectado junto a los pedidos que tiene y los productos que contiene cada pedido
+//TODO: Endpoint que nos traiga la información del usuario CONECTADO junto a los pedidos que tiene y los productos que contiene cada pedido
 //OK / Endpoint para el logout
 Implementa validación a la hora de crear un usuario para que se rellene todos los campos y si no se hace que devuelva un mensaje
 
-TODO: Seeders
+//OK / Seeders
 Crea 5 productos con un seeder //hay trampa. Con las password, aqui son strings y estamos utilizano bcrypt
 
 

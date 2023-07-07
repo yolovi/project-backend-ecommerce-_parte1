@@ -1,5 +1,5 @@
 //IMPORT
-const { User, Token, Sequelize }  = require('../models/index.js');
+const { User, Order, Product, Token, Sequelize }  = require('../models/index.js');
 const { Op } = Sequelize;
 const bcrypt = require ('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -54,6 +54,28 @@ const UserController = {
         res.status(500).send("Error finding category");
       }
     },
+//TODO: Endpoint que nos traiga la información del usuario CONECTADO junto a los pedidos que tiene y los productos que contiene cada pedido
+async getOrdersUser(req, res) {
+  try {
+
+    const user = await User.findByPk(req.user.id)
+    ({     
+    //el include equivale al inner join pero no se puede hacer hasta tener las relaciones y FK
+    include: { model: Order }});
+
+  //  include: [
+  //       { model: Order },
+  //       { model: Product, attributes: ["id", "name_product", "price"] }
+  //     ]
+  //   });
+
+    res.status(200).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Failed to retrieve orders" });
+  }
+},
+
     async logout(req, res) {
       try {
           await Token.destroy({

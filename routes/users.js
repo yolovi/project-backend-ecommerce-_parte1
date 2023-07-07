@@ -9,6 +9,7 @@ const {authentication} = require('../middleware/authentication')
 router.post("/",UserController.create);
 router.post("/login", UserController.login);
 router.get("/allUsers", authentication, UserController.getAll);
+router.get("/orders",authentication, UserController.getOrdersUser);
 router.delete('/logout',authentication,UserController.logout)
 
 TODO://authentication (viene de la carpeta middleware) poner en las rutas: getall, delete user,update user (lo implementamos en aquellas rutas que queremos que solo se acceda si estas logeado
