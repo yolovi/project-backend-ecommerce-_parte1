@@ -36,7 +36,10 @@ const isAdmin = async(req, res, next) => {
         });
     }
     next();
-}
+};
 
-module.exports = { authentication, isAdmin }
+//EXPORT
+module.exports = { authentication, isAdmin };
+
+
 

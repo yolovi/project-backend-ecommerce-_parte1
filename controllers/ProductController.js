@@ -4,7 +4,7 @@ const { Op } = Sequelize;
 
 //CONTROLADORES
 const ProductController = {
-  async insert(req, res) {
+  async insert(req, res, next) {
     try {
       console.log(req.user.id);
       const product = await Product.create({
@@ -16,7 +16,8 @@ const ProductController = {
         .send({ message: "Product created successfully", product });
     } catch (error) {
       console.error(error);
-      res.status(500).send("Error creating product");
+      // res.status(500).send("Error creating product");
+      next(error)
     }
   },
   async update(req, res) {
