@@ -8,15 +8,14 @@ const ProductController = {
     try {
       console.log(req.user.id);
       const product = await Product.create({
-        ...req.body,
-        UserId: req.user.id,
+        ...req.body, //desestructuramos req.body
+        UserId: req.user.id, // le ponemos una nueva propiedad (el user id logeado)
       }); //desestructuramos para incluir el user.id (para que autom coja el user logeado)
       res //FIXME: req.userId. despues de hacer las relaciones comprobar si sale el userId automat. al crear el producto en postman
         .status(201)
         .send({ message: "Product created successfully", product });
     } catch (error) {
       console.error(error);
-      // res.status(500).send("Error creating product");
       next(error)
     }
   },
@@ -60,7 +59,10 @@ const ProductController = {
     try {
       const products = await Product.findAll({
        //el include equivale al inner join pero no se puede hacer hasta tener las relaciones y FK
-        include: [{ model: Category, attributes: ["id", "name_category"] }],
+        include: [
+          { model: Category, 
+            attributes: ["name_category"] }
+        ],
       });
       res.status(200).send(products);
     } catch (error) {
@@ -68,6 +70,19 @@ const ProductController = {
       res.status(500).send({ message: "Error loading products" });
     }
   },
+
+  // async getAll(req, res) {
+  //   try {
+  //     const books = await Book.findAll({
+  //       include: [
+  //         {
+  //           model: Genre, //para que vengan los generos
+  //           attributes: ["name"], // para decirle que columnas quiero visualizar
+  //           through: { attributes: [] }, //para que no se muestren los atributos de la tabla intermedia
+  //         },
+  //       ],
+  //     });
+  //     res.send(books);
 
   //FIXME:Endpoint que traiga un producto por su id. Si pongo un id de producto que no existe sale un numero y no el error
   //NOTA: cuando sale este error "sqlMessage": "Unknown column 'Order_Product_ProductId' in 'field list'" es porque se ha puesto las relaciones de muchos a muchos sin conectar la FK. o en la tabla intermedia. 
