@@ -12,7 +12,6 @@ const CategoryController = {
         category_created: category,
       });
     } catch (error) {
-      console.error(error);
       res.status(500).send("Error creating category");
     }
   },
@@ -34,8 +33,7 @@ const CategoryController = {
         .status(201)
         .send({ msg: "Category updated successfully", categoryUpdated });
     } catch (error) {
-      console.error(error);
-      res.status(500).send("Error updating category");
+      res.status(500).send({ message: "Error updating category", error });
     }
   },
   async delete(req, res) {
@@ -47,8 +45,7 @@ const CategoryController = {
       });
       res.status(200).send("Category deleted successfully");
     } catch (error) {
-      console.error(error);
-      res.status(500).send("Error deleting category");
+      res.status(500).send({ message: "Error deleting category", error });
     }
   },
   async getByID(req, res) {
@@ -56,41 +53,40 @@ const CategoryController = {
       const category = await Category.findByPk(req.params.id);
       res.status(200).send(category);
     } catch (error) {
-      console.error(error);
-      res.status(500).send("Error finding category");
+      res.status(500).send({ message: "Error finding category", error });
     }
   },
   async getOneByName(req, res) {
     try {
       const category = await Category.findOne({
-        where:{
-          name_category: { //name_category es del modelo
-            [Op.like]: `%${req.params.name}%` //name tiene que coincidir con el de la ruta
-          }
-        }
+        where: {
+          name_category: {
+            [Op.like]: `%${req.params.name}%`,
+          },
+        },
       });
-      res.status(200).send(category)
+      res.status(200).send(category);
     } catch (error) {
-      console.error(error);
-      res.status(500).send("Error finding category");
+      res.status(500).send({ message: "Error finding category", error });
     }
   },
   async getAll(req, res) {
-  try {
-    const categories = await Category.findAll({
-      include: [{ model: Product, attributes: ["id", "name_product"], foreignKey:"CategoryId" }],
-    }); //{ model: Genre, attributes: ["name"], through: { attributes: [] } }
-    res.status(200).send(categories);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Error loading categories" });
-  }
-},
-
-
+    try {
+      const categories = await Category.findAll({
+        include: [
+          {
+            model: Product,
+            attributes: ["id", "name_product"],
+            foreignKey: "CategoryId",
+          },
+        ],
+      });
+      res.status(200).send(categories);
+    } catch (error) {
+      res.status(500).send({ message: "Error loading categories" });
+    }
+  },
 };
-
-
 
 //EXPORT
 module.exports = CategoryController;

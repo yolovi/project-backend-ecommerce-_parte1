@@ -3,11 +3,10 @@ const bcrypt = require ('bcryptjs');
 
 "use strict";
 
-// Para encriptar en los seedes tenéis que importados bcrypt en el archivo y donde ponéis la contraseña poned bcrypt.hash("contraseña123",10)
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert("Users", [ //"Users" modelo importante el naming
+    return queryInterface.bulkInsert("Users", [ 
       {
         name_user: "John",
         last_name: "Doe",

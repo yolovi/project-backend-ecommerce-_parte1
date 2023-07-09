@@ -1,5 +1,5 @@
 //IMPORT
-const express = require("express"); // para levantar el servidor
+const express = require("express"); 
 const CategoryController = require("../controllers/CategoryController");
 const router = express.Router();
 

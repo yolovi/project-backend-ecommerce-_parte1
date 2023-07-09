@@ -3,9 +3,9 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.changeColumn("Users", "email",  { //users es el nombre de la tabla en mysql
+    return queryInterface.changeColumn("Users", "email",  { 
       type:Sequelize.STRING,
-      unique:true //email unique
+      unique:true 
     });
   },
 

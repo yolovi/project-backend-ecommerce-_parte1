@@ -1,104 +1,88 @@
 //IMPORT
-const { User, Order, Product, Token, Sequelize }  = require('../models/index.js');
+const {
+  User,
+  Order,
+  Product,
+  Token,
+  Sequelize,
+} = require("../models/index.js");
 const { Op } = Sequelize;
-const bcrypt = require ('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { jwt_secret } = require('../config/config.json')['development']
-
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { jwt_secret } = require("../config/config.json")["development"];
 
 //CONTROLADORES
 const UserController = {
   async create(req, res) {
     try {
-      req.body.role = "user" //añade predefinido a role el atributo de user sin ponerlo en Postman
-      const password = await bcrypt.hash(req.body.password,10) //encriptar password
-      const user = await User.create({...req.body, password}); //desestructurar req.body del paso anterior para ponerle el password encriptado
-      res.status(201).send({ message: 'User created successfully', user })
+      req.body.role = "user";
+      const password = await bcrypt.hash(req.body.password, 10);
+      const user = await User.create({ ...req.body, password });
+      res.status(201).send({ message: "User created successfully", user });
     } catch (error) {
-      console.error(error);
-      res.status(500).send({message: "Error creating user", error});
+      res.status(500).send({ message: "Error creating user", error });
     }
-  }, 
-     async login(req, res) {
-      try {
-        const user = await User.findOne({
-          where: {
-            email: req.body.email,
-          },
-        });
-        if (!user) {
-          return res
-            .status(400)
-            .send({ message: "Incorrect user or password" });
-        }
-        const isMatch = await bcrypt.compare(req.body.password, user.password);
-        if (!isMatch) {
-          return res
-            .status(400)
-            .send({ message: "Incorrect user or password" });
-        }
-        const token = jwt.sign({id: user.id}, jwt_secret);
-        await Token.create({ token, UserId: user.id });
-        res.send({message: "Welcome " + user.name_user, user, token}); 
-      } catch (error) {
-        console.error(error);
-        res.status(500).send(error);
+  },
+  async login(req, res) {
+    try {
+      const user = await User.findOne({
+        where: {
+          email: req.body.email,
+        },
+      });
+      if (!user) {
+        return res.status(400).send({ message: "Incorrect user or password" });
       }
-    },
-    async getAll(req, res) {
-      try {
-        const users = await User.findAll();
-        res.status(200).send(users);
-      } catch (error) {
-        console.error(error);
-        res.status(500).send("Error finding category");
+      const isMatch = await bcrypt.compare(req.body.password, user.password);
+      if (!isMatch) {
+        return res.status(400).send({ message: "Incorrect user or password" });
       }
-    },
-//TODO: Endpoint que nos traiga la información del usuario CONECTADO junto a los pedidos que tiene y los productos que contiene cada pedido
-
-
-async getOrdersUser(req, res) {
-  try {
-
-    const user = await User.findByPk(req.user.id, {
-     include: { 
-      model: Order,
-      include: Product,
-     }
-    })
-      
-
-    res.status(200).send(user);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Failed to retrieve orders" });
-  }
-},
-
-    async logout(req, res) {
-      try {
-          await Token.destroy({
-              where: {
-                  [Op.and]: [
-                      { UserId: req.user.id },
-                      { token: req.headers.authorization }
-                  ]
-              }
-          });
-          res.send({ message: 'You have been successfully logged out' })
-      } catch (error) {
-          console.log(error)
-          res.status(500).send({ message: 'Error trying to being logged out' })
-      }
-  }
-
-  
-  };
-
-
-
-
-
+      const token = jwt.sign({ id: user.id }, jwt_secret);
+      await Token.create({ token, UserId: user.id });
+      res.send({ message: "Welcome " + user.name_user, user, token });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  },
+  async getAll(req, res) {
+    try {
+      const users = await User.findAll();
+      res.status(200).send(users);
+    } catch (error) {
+      res.status(500).send({ message: "Error finding category", error });
+    }
+  },
+  async getOrdersUser(req, res) {
+    try {
+      const user = await User.findByPk(req.user.id, {
+        include: {
+          model: Order,
+          include: Product,
+        },
+      });
+      res.status(200).send(user);
+    } catch (error) {
+      res.status(500).send({ message: "Failed to retrieve orders", error });
+    }
+  },
+  async logout(req, res) {
+    try {
+      await Token.destroy({
+        where: {
+          [Op.and]: [
+            { UserId: req.user.id },
+            { token: req.headers.authorization },
+          ],
+        },
+      });
+      res.send({ message: "You have been successfully logged out" });
+    } catch (error) {
+      res
+        .status(500)
+        .send({ message: "Error trying to being logged out", error });
+    }
+  },
+};
 
 //EXPORTS
-module.exports = UserController
+module.exports = UserController;

@@ -6,7 +6,7 @@ const {authentication, isAdmin} = require('../middleware/authentication')
 
 
 //ROUTES
-router.post('/', authentication, ProductController.insert); //post se refiere al metodo en postman // insert al nombre del metodo del modelo product
+router.post('/', authentication, ProductController.insert); 
 router.put('/id/:id', authentication, ProductController.update);
 router.get('/id/:id',ProductController.getById);
 router.get('/name_product/:name_product',ProductController.getOneByName);
@@ -17,7 +17,6 @@ router.get('/price_desc',ProductController.orderDescByPrice);
 router.get('/price_asc',ProductController.orderAscByPrice);
 router.delete('/id/:id', authentication, isAdmin, ProductController.delete);
 
-//FIXME: add authentication & isAdmin en crear,actualizar y eliminar (es un extra)
 
 //EXPORTS
 module.exports = router;

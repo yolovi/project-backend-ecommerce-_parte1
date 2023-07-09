@@ -12,12 +12,10 @@ module.exports = {
       UserId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { // no es necesario si utilizamos las conexiones con belongs, has many... esto solo vale para ver la conexion si hacemos el Reverse Engineer en mySql para ver las conexiones
+        references: { 
           model: 'Users',
           key: 'id'
         },
-        // onUpdate: 'CASCADE', //no funciona con sequelize ON CASCADE
-        // onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

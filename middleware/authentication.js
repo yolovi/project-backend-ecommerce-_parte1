@@ -22,11 +22,10 @@ const authentication = async(req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-        console.log(error)
+
         res.status(500).send({ error, message: 'Error validating access token' })
     }
 }
-
 
 const isAdmin = async(req, res, next) => {
     const admins = ['admin','superadmin'];
