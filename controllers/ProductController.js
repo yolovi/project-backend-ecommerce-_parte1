@@ -71,19 +71,6 @@ const ProductController = {
     }
   },
 
-  // async getAll(req, res) {
-  //   try {
-  //     const books = await Book.findAll({
-  //       include: [
-  //         {
-  //           model: Genre, //para que vengan los generos
-  //           attributes: ["name"], // para decirle que columnas quiero visualizar
-  //           through: { attributes: [] }, //para que no se muestren los atributos de la tabla intermedia
-  //         },
-  //       ],
-  //     });
-  //     res.send(books);
-
   //FIXME:Endpoint que traiga un producto por su id. Si pongo un id de producto que no existe sale un numero y no el error
   //NOTA: cuando sale este error "sqlMessage": "Unknown column 'Order_Product_ProductId' in 'field list'" es porque se ha puesto las relaciones de muchos a muchos sin conectar la FK. o en la tabla intermedia. 
 
