@@ -1,11 +1,5 @@
 //IMPORT
-const {
-  User,
-  Order,
-  Product,
-  Token,
-  Sequelize,
-} = require("../models/index.js");
+const { User, Order,Product,Token,Sequelize,} = require("../models/index.js");
 const { Op } = Sequelize;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -13,14 +7,14 @@ const { jwt_secret } = require("../config/config.json")["development"];
 
 //CONTROLADORES
 const UserController = {
-  async create(req, res) {
+  async create(req, res, next) {
     try {
       req.body.role = "user";
       const password = await bcrypt.hash(req.body.password, 10);
       const user = await User.create({ ...req.body, password });
       res.status(201).send({ message: "User created successfully", user });
     } catch (error) {
-      res.status(500).send({ message: "Error creating user", error });
+      next(error)
     }
   },
   async login(req, res) {
