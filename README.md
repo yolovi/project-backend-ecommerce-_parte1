@@ -1,4 +1,4 @@
-# E-COMMERCE API with 
+# E-COMMERCE API with Node, Express & Sequelize
 
 ## Description 🤨
 In the backend project, we will combine the knowledge acquired in node + express technologies, as well as mysql/sequelize to develop an API. The proposed exercise is an e-commerce application where CRUD operations will be implemented for users, products, orders, and categories.
