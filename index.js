@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const {typeError} = require('./middleware/errors');
+const cors = require('cors')
 const PORT = 3000;
 
 //MIDDLEWARE (funcion que ejecutas antes de las rutas)
 app.use(express.json());
+app.use(cors())
 
 //ROUTES /prefix
 app.use("/users", require("./routes/users"));
